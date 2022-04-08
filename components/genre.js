@@ -39,7 +39,7 @@ const fetcher = genre =>
     genre
   });
 
-export default function Genre({ genre }) {
+export default function Genre({ index, genre, genreRefs }) {
   const { data, error } = useSWR([genre], fetcher);
 
   if (!data && !error)
@@ -63,8 +63,10 @@ export default function Genre({ genre }) {
   }
 
   return (
-    <div className="container">
-      <h2 className="text-capitalize py-5">{genre}</h2>
+    <div ref={el => (genreRefs.current[index] = el)} className="container">
+      <h2 id={genre} className="text-capitalize py-5">
+        {genre}
+      </h2>
       {data.SongsByGenre.length ? (
         <div className="row row-cols-1 row-cols-sm-3 row-cols-lg-5 g-3">
           {data.SongsByGenre.map(song => (

@@ -6,6 +6,8 @@ export default {
       const offsetStart = PER_PAGE * (page - 1);
       const offsetEnd = offsetStart + PER_PAGE;
 
+      if (search) search = search.replace(/'/g, "''")
+
       const query = search
         ? `SELECT * FROM songs
       WHERE track_name LIKE '%${search}%'

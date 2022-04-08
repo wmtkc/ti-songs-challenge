@@ -1,12 +1,10 @@
 import Genre from './genre';
 
-const GENRES = ['rap', 'pop', 'edm', 'r&b', 'rock', 'latin'];
-
-export default function Genres() {
+export default function Genres({ genres, genreRefs }) {
   return (
     <>
-      {GENRES.map(genre => (
-        <Genre key={genre} genre={genre} />
+      {genres.map((genre, i) => (
+        <Genre key={genre} index={i} genreRefs={genreRefs} genre={genre} />
       ))}
     </>
   );
